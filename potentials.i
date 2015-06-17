@@ -33,7 +33,6 @@
 %include "potential/plummer.h"
 
 
-{# Hacky way of bolting on a method to these classes. #}
 %pythoncode %{
 import numpy as np
 def make_hessian(potential, x, y, z, t=0.0):
