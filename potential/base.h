@@ -87,31 +87,6 @@ public:
 
     virtual double d2dr2(double x, double y, double z, double t ) const = 0;
 
-    virtual void acc(double x, double y, double z, double t, Vec3D& force) const
-    {
-        force.x = ddx(x, y, z, t);
-        force.y = ddy(x, y, z, t);
-        force.z = ddz(x, y, z, t);
-    }
-
-    // Compute the hessian of the potential at a given point
-    arma::mat33 hessian(double x, double y, double z, double t) const
-    {
-        arma::mat33 m = arma::zeros<arma::mat>(3,3);
-
-        m(0,0) = d2dx2(x,y,z,t);
-        m(0,1) = d2dxdy(x,y,z,t);
-        m(0,2) = d2dxdz(x,y,z,t);
-        m(1,1) = d2dy2(x,y,z,t);
-        m(1,2) = d2dydz(x,y,z,t);
-        m(2,2) = d2dz2(x,y,z,t);
-
-        m(1,0) = m(0,1);
-        m(2,0) = m(0,2);
-        m(2,1) = m(1,2);
-
-        return m;
-    }
 
     virtual ~Potential()
     {}
